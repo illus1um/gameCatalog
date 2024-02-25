@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
-const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const { requireAuth, checkUser, requireRole} = require('./middleware/authMiddleware');
 
 const app = express();
 
@@ -24,4 +24,5 @@ mongoose.connect(dbURI)
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/games', requireAuth, (req, res) => res.render('games'));
+app.get('/admin', requireAuth, requireRole('admin'), (req, res) => {res.render('admin');});
 app.use(authRoutes);

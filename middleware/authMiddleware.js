@@ -40,5 +40,33 @@ const checkUser = (req, res, next) => {
   }
 };
 
+const requireRole = (role) => {
+  return (req, res, next) => {
+    const token = req.cookies.jwt;
 
-module.exports = { requireAuth, checkUser };
+    // Проверяем наличие и валидность токена
+    if (token) {
+      jwt.verify(token, 'illus1ve', async (err, decodedToken) => {
+        if (err) {
+          console.log(err.message);
+          res.redirect('/login');
+        } else {
+          // Получаем пользователя из базы данных по id из токена
+          const user = await User.findById(decodedToken.id);
+
+          // Проверяем роль пользователя
+          if (user.role === role) {
+            next();
+          } else {
+            res.status(403).render('error'); // Ошибка 403: Доступ запрещен
+          }
+        }
+      });
+    } else {
+      res.redirect('/login');
+    }
+  };
+};
+
+
+module.exports = { requireAuth, checkUser, requireRole };
