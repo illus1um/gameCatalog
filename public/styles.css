@@ -6,6 +6,7 @@ body{
   font-size: 1.2rem;
   letter-spacing: 1px;
   background: #fafafa;
+  height: 100%;
 }
 h1, h2, h3, h4, ul, li, a, p, input, label, button, div, footer{
   margin: 0;
@@ -79,6 +80,7 @@ button{
   display: block;
   padding: 10px 16px;
   letter-spacing: 2px;
+  cursor: pointer;
 }
 .error{
   color: #ff0099;
