@@ -13,7 +13,7 @@ module.exports.games_get = async (req, res) => {
     const queryParams = {
       key: API_KEY,
       page: page || 1,
-      page_size: page_size || 30,
+      page_size: page_size || 24,
       search,
       platforms,
     };
@@ -32,9 +32,11 @@ module.exports.games_get = async (req, res) => {
       totalPages,
       nextPage: next,
       prevPage: previous,
+      searchQuery: search, // Передаем поисковой запрос для отображения в форме
     });
   } catch (error) {
     console.error('Error fetching games:', error);
     res.status(500).render('error');
   }
 };
+

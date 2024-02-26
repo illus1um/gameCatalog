@@ -8,6 +8,7 @@ body{
   letter-spacing: 1px;
   background: #fafafa;
   height: 100%;
+  font-family: 'Kanit', sans-serif;
 }
 
 /* Удаляем все остальные стили, так как мы будем использовать классы Bootstrap */

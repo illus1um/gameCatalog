@@ -3,6 +3,18 @@
 
 <main class="container">
   <h1 class="my-4">Games</h1>
+
+  <!-- Форма поиска игр -->
+  <form class="mb-4" action="/games" method="GET">
+    <div class="input-group">
+      <input type="text" class="form-control" name="search" placeholder="Search for games..." value="<%= searchQuery || '' %>">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Отображение результатов поиска -->
   <div class="row">
     <% games.forEach(game => { %>
       <div class="col-md-4 mb-4">
@@ -21,31 +33,34 @@
     <% }); %>
   </div>
 
-  <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-      <% if (prevPage) { %>
-        <li class="page-item">
-          <a class="page-link" href="<%= `?page=${currentPage - 1}` %>">Previous</a>
-        </li>
-      <% } %>
+  <!-- Пагинация (отображается только если нет поискового запроса) -->
+  <% if (!searchQuery) { %>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <% if (prevPage) { %>
+          <li class="page-item">
+            <a class="page-link" href="<%= `?page=${currentPage - 1}` %>">Previous</a>
+          </li>
+        <% } %>
 
-      <% const maxPagesToShow = 5; // Максимальное количество ссылок на страницы для отображения %>
-      <% const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2)); %>
-      <% const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1); %>
+        <% const maxPagesToShow = 5; // Максимальное количество ссылок на страницы для отображения %>
+        <% const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2)); %>
+        <% const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1); %>
 
-      <% for (let i = startPage; i <= endPage; i++) { %>
-        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
-          <a class="page-link" href="<%= `?page=${i}` %>"><%= i %></a>
-        </li>
-      <% } %>
+        <% for (let i = startPage; i <= endPage; i++) { %>
+          <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+            <a class="page-link" href="<%= `?page=${i}` %>"><%= i %></a>
+          </li>
+        <% } %>
 
-      <% if (nextPage) { %>
-        <li class="page-item">
-          <a class="page-link" href="<%= `?page=${currentPage + 1}` %>">Next</a>
-        </li>
-      <% } %>
-    </ul>
-  </nav>
+        <% if (nextPage) { %>
+          <li class="page-item">
+            <a class="page-link" href="<%= `?page=${currentPage + 1}` %>">Next</a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  <% } %>
 </main>
 
 <%- include('partials/footer'); -%>
