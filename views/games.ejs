@@ -1,10 +1,25 @@
 <!-- views/games.ejs -->
-
 <%- include('partials/header'); -%>
 
-<main class="container mt-5">
-  <h1>Games</h1>
-  <!-- here will be games -->
+<main class="container">
+  <h1 class="my-4">Games</h1>
+  <div class="row">
+    <% games.forEach(game => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="<%= game.background_image %>" class="card-img-top" alt="<%= game.name %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= game.name %></h5>
+            <p class="card-text"><strong>Release Date:</strong> <%= game.released %></p>
+            <p class="card-text"><strong>Rating:</strong> <%= game.rating %></p>
+            <p class="card-text"><strong>Genres:</strong> <%= game.genres.map(genre => genre.name).join(', ') %></p>
+            <p class="card-text"><strong>Platforms:</strong> <%= game.platforms.map(platform => platform.platform.name).join(', ') %></p>
+            <a href="#" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
 </main>
 
 <%- include('partials/footer'); -%>
