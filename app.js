@@ -24,5 +24,5 @@ mongoose.connect(dbURI)
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/games', requireAuth, (req, res) => res.render('games'));
-app.get('/admin', requireAuth, requireRole('admin'), (req, res) => {res.render('admin');});
+app.use('/admin', requireAuth, requireRole('admin'));
 app.use(authRoutes);
