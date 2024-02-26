@@ -1,8 +1,5 @@
-// controllers/adminController.js
-
 const Item = require('../models/item');
 
-// Отображение административной панели
 module.exports.admin_get = async (req, res) => {
   try {
     const items = await Item.find();
@@ -13,12 +10,10 @@ module.exports.admin_get = async (req, res) => {
   }
 };
 
-// Добавление нового элемента (GET)
 module.exports.add_item_get = (req, res) => {
   res.render('add_item');
 };
 
-// Добавление нового элемента (POST)
 module.exports.add_item_post = async (req, res) => {
   const { picture, nameRU, nameEN, descriptionRU, descriptionEN } = req.body;
   try {
@@ -30,7 +25,6 @@ module.exports.add_item_post = async (req, res) => {
   }
 };
 
-// Редактирование элемента (GET)
 module.exports.edit_item_get = async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,7 +36,6 @@ module.exports.edit_item_get = async (req, res) => {
   }
 };
 
-// Редактирование элемента (POST)
 module.exports.edit_item_post = async (req, res) => {
   const { id } = req.params;
   const { picture, nameRU, nameEN, descriptionRU, descriptionEN } = req.body;
@@ -55,7 +48,6 @@ module.exports.edit_item_post = async (req, res) => {
   }
 };
 
-// Удаление элемента (GET)
 module.exports.delete_item_get = async (req, res) => {
   const { id } = req.params;
   try {
@@ -67,7 +59,6 @@ module.exports.delete_item_get = async (req, res) => {
   }
 };
 
-// Удаление элемента (POST)
 module.exports.delete_item_post = async (req, res) => {
   const { id } = req.params;
   try {

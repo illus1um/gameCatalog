@@ -4,7 +4,6 @@ const User = require('../models/User');
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
-  // check json web token exists & is verified
   if (token) {
     jwt.verify(token, 'illus1ve', (err, decodedToken) => {
       if (err) {
@@ -20,7 +19,6 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-// check current user
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
@@ -43,22 +41,19 @@ const checkUser = (req, res, next) => {
 const requireRole = (role) => {
   return (req, res, next) => {
     const token = req.cookies.jwt;
-
-    // Проверяем наличие и валидность токена
     if (token) {
       jwt.verify(token, 'illus1ve', async (err, decodedToken) => {
         if (err) {
           console.log(err.message);
           res.redirect('/login');
         } else {
-          // Получаем пользователя из базы данных по id из токена
           const user = await User.findById(decodedToken.id);
 
-          // Проверяем роль пользователя
+
           if (user.role === role) {
             next();
           } else {
-            res.status(403).render('error'); // Ошибка 403: Доступ запрещен
+            res.status(403).render('error');
           }
         }
       });

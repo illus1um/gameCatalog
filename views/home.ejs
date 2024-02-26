@@ -8,7 +8,8 @@
   </div>
 </header>
 
-<main class="container">
+<main class="container mt-5">
+  <h2 class="text-center">Games that i recommend to play everyone</h2>
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <% items.forEach((item, index) => { %>
@@ -20,7 +21,7 @@
         <div class="carousel-item <% if (index === 0) { %>active<% } %>">
           <img src="<%= item.picture %>" class="d-block w-100" alt="<%= item.nameEN %>">
           <div class="carousel-caption d-none d-md-block">
-            <h5><%= item.nameEN %></h5>
+            <h1><%= item.nameEN %></h1>
           </div>
         </div>
       <% }); %>
@@ -47,23 +48,19 @@
 <%- include('partials/footer'); -%>
 
 <script>
-  // Получаем ссылки на описание каждого элемента
   const descriptions = document.querySelectorAll('[id^="description"]');
 
-  // Функция для обновления описания при изменении слайда в карусели
   const updateDescription = (index) => {
     descriptions.forEach((description, i) => {
-      description.style.display = i === index ? 'block' : 'none'; // Отображаем описание только для текущего слайда
+      description.style.display = i === index ? 'block' : 'none';
     });
   };
 
-  // Слушаем событие смены слайда в карусели
   const carousel = document.getElementById('carouselExampleIndicators');
   carousel.addEventListener('slid.bs.carousel', (event) => {
     const index = event.to;
-    updateDescription(index); // Обновляем описание
+    updateDescription(index);
   });
 
-  // Инициализируем описание для первого слайда
   updateDescription(0);
 </script>

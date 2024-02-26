@@ -10,25 +10,21 @@ const { requireAuth, checkUser, requireRole} = require('./middleware/authMiddlew
 
 const app = express();
 
-// middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
 
-// view engine
 app.set('view engine', 'ejs');
 
-// database connection
 const dbURI = 'mongodb+srv://illus1ve:1q2w3e4r5t@cluster0.zo5qkc6.mongodb.net/gameCatalog';
 mongoose.connect(dbURI)
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
-// routes
 app.get('*', checkUser);
 app.get('/', homeRoutes);
 app.use('/games', requireAuth, gamesRoutes);
-app.use('/news', requireAuth, newsRoutes); // Используем новый маршрут для новостей
+app.use('/news', requireAuth, newsRoutes);
 app.use('/admin', requireAuth, requireRole('admin'), adminRoutes);
 app.use(authRoutes);
