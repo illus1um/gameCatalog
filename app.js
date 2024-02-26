@@ -2,13 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const gamesRoutes = require('./routes/gamesRoutes');
-const newsRoutes = require('./routes/newsRoutes'); // Добавляем новый маршрут для новостей
+const newsRoutes = require('./routes/newsRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser, requireRole} = require('./middleware/authMiddleware');
 
 const app = express();
 
 // middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
@@ -27,5 +29,5 @@ app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.use('/games', requireAuth, gamesRoutes);
 app.use('/news', requireAuth, newsRoutes); // Используем новый маршрут для новостей
-app.use('/admin', requireAuth, requireRole('admin'));
+app.use('/admin', requireAuth, requireRole('admin'), adminRoutes);
 app.use(authRoutes);

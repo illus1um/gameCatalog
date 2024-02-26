@@ -1,0 +1,32 @@
+<!-- views/edit_item.ejs -->
+
+<%- include('partials/header'); -%>
+
+<main class="container mt-5">
+    <h2>Edit Item</h2>
+    <form action="/admin/edit/<%= item._id %>" method="POST">
+        <div class="mb-3">
+            <label for="picture" class="form-label">Picture Link:</label>
+            <input type="text" class="form-control" id="picture" name="picture" value="<%= item.picture %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="nameRU" class="form-label">Name (RU):</label>
+            <input type="text" class="form-control" id="nameRU" name="nameRU" value="<%= item.nameRU %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="nameEN" class="form-label">Name (EN):</label>
+            <input type="text" class="form-control" id="nameEN" name="nameEN" value="<%= item.nameEN %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="descriptionRU" class="form-label">Description (RU):</label>
+            <textarea class="form-control" id="descriptionRU" name="descriptionRU" rows="3" required><%= item.descriptionRU %></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="descriptionEN" class="form-label">Description (EN):</label>
+            <textarea class="form-control" id="descriptionEN" name="descriptionEN" rows="3" required><%= item.descriptionEN %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</main>
+
+<%- include('partials/footer'); -%>

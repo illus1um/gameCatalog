@@ -1,0 +1,17 @@
+<!-- views/delete_item.ejs -->
+
+<%- include('partials/header'); -%>
+
+<main class="container mt-5">
+    <h2>Delete Item</h2>
+    <p>Are you sure you want to delete this item?</p>
+    <p><strong>ID:</strong> <%= item._id %></p>
+    <p><strong>Name (RU):</strong> <%= item.nameRU %></p>
+    <p><strong>Name (EN):</strong> <%= item.nameEN %></p>
+    <form action="/admin/delete/<%= item._id %>" method="POST">
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="/admin" class="btn btn-secondary">Cancel</a>
+    </form>
+</main>
+
+<%- include('partials/footer'); -%>
