@@ -4,6 +4,7 @@ const authRoutes = require('./routes/authRoutes');
 const gamesRoutes = require('./routes/gamesRoutes');
 const newsRoutes = require('./routes/newsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const homeRoutes = require('./routes/homeRoutes.js')
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser, requireRole} = require('./middleware/authMiddleware');
 
@@ -26,7 +27,7 @@ mongoose.connect(dbURI)
 
 // routes
 app.get('*', checkUser);
-app.get('/', (req, res) => res.render('home'));
+app.get('/', homeRoutes);
 app.use('/games', requireAuth, gamesRoutes);
 app.use('/news', requireAuth, newsRoutes); // Используем новый маршрут для новостей
 app.use('/admin', requireAuth, requireRole('admin'), adminRoutes);

@@ -1,13 +1,69 @@
-<!-- views/home.ejs -->
-
 <%- include('partials/header'); -%>
 
 <header class="container my-5">
   <div class="text-center">
     <h2>Find Games and Read the news</h2>
     <a href="/games" class="btn btn-warning">View Games</a>
-    <a href="/news" class="btn btn-warning">View Game News</a> <!-- Новая кнопка для просмотра игровых новостей -->
+    <a href="/news" class="btn btn-warning">View Game News</a>
   </div>
 </header>
 
+<main class="container">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <% items.forEach((item, index) => { %>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" <% if (index === 0) { %>class="active"<% } %> aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
+      <% }); %>
+    </div>
+    <div class="carousel-inner">
+      <% items.forEach((item, index) => { %>
+        <div class="carousel-item <% if (index === 0) { %>active<% } %>">
+          <img src="<%= item.picture %>" class="d-block w-100" alt="<%= item.nameEN %>">
+          <div class="carousel-caption d-none d-md-block">
+            <h5><%= item.nameEN %></h5>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="container-sm mt-2">
+    <% items.forEach((item, index) => { %>
+      <div class="row">
+        <i><p  class="text-center" id="description<%= index %>"><%= item.descriptionEN %></p></i>
+      </div>
+    <% }); %>
+  </div>
+</main>
+
 <%- include('partials/footer'); -%>
+
+<script>
+  // Получаем ссылки на описание каждого элемента
+  const descriptions = document.querySelectorAll('[id^="description"]');
+
+  // Функция для обновления описания при изменении слайда в карусели
+  const updateDescription = (index) => {
+    descriptions.forEach((description, i) => {
+      description.style.display = i === index ? 'block' : 'none'; // Отображаем описание только для текущего слайда
+    });
+  };
+
+  // Слушаем событие смены слайда в карусели
+  const carousel = document.getElementById('carouselExampleIndicators');
+  carousel.addEventListener('slid.bs.carousel', (event) => {
+    const index = event.to;
+    updateDescription(index); // Обновляем описание
+  });
+
+  // Инициализируем описание для первого слайда
+  updateDescription(0);
+</script>
