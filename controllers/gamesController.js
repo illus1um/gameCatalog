@@ -20,10 +20,19 @@ module.exports.games_get = async (req, res) => {
 
     // Выполняем запрос к RAWG API
     const response = await axios.get(API_URL, { params: queryParams });
-    const games = response.data.results;
+    const { results, count, next, previous } = response.data;
 
-    // Отображаем страницу с играми и передаем данные
-    res.render('games', { games });
+    // Вычисляем количество страниц
+    const totalPages = Math.ceil(count / queryParams.page_size);
+
+    // Передаем данные о играх и пагинации в представление
+    res.render('games', { 
+      games: results,
+      currentPage: parseInt(queryParams.page),
+      totalPages,
+      nextPage: next,
+      prevPage: previous,
+    });
   } catch (error) {
     console.error('Error fetching games:', error);
     res.status(500).render('error');
