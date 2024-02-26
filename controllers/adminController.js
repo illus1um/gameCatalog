@@ -1,4 +1,4 @@
-const Item = require("c:/Users/illus1ve/Documents/NODEJS_2ND-TRIM/gameCatalog/models/Item");
+const Item = require('../models/item');
 
 module.exports.admin_get = async (req, res) => {
   try {

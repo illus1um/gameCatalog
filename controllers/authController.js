@@ -1,4 +1,4 @@
-const User = require("c:/Users/illus1ve/Documents/NODEJS_2ND-TRIM/gameCatalog/models/user");
+const User = require("../models/user");
 const jwt = require('jsonwebtoken');
 
 const handleErrors = (err) => {
