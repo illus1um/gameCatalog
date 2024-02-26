@@ -2,11 +2,9 @@
 
 <%- include('partials/header'); -%>
 
-    <div class="container">
-        <h1>Error 403: Access Forbidden</h1>
-        <p>Sorry <strong><%= user.username %></strong>, you do not have permission to access this page.</p>
-    </div>
-</body>
-</html>
+<div class="container mt-5">
+    <h1 class="text-danger">Error 403: Access Forbidden</h1>
+    <p>Sorry <strong><%= user.username %></strong>, you do not have permission to access this page.</p>
+</div>
 
 <%- include('partials/footer'); -%>
