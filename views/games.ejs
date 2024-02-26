@@ -1,15 +1,21 @@
 <!-- views/games.ejs -->
 <%- include('partials/header'); -%>
 
-<main class="container">
-  <h1 class="my-4">Games</h1>
+<main class="container mt-5">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Games</li>
+      <li class="breadcrumb-item active"><a href="/news">News</a></li>
+    </ol>
+  </nav>
 
   <!-- Форма поиска игр -->
   <form class="mb-4" action="/games" method="GET">
     <div class="input-group">
       <input type="text" class="form-control" name="search" placeholder="Search for games..." value="<%= searchQuery || '' %>">
       <div class="input-group-append">
-        <button class="btn btn-warning" type="submit">Search</button>
+        <button class="btn btn-warning" type="submit">Search Game</button>
       </div>
     </div>
   </form>

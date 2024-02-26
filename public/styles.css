@@ -3,6 +3,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 /* Оставляем этот стиль для тела */
 body{
   margin: 20px 40px;
@@ -10,7 +11,7 @@ body{
   letter-spacing: 1px;
   background: #fafafa;
   height: 100%;
-  font-family: 'Overpass', sans-serif;
+  font-family: 'Kode Mono', sans-serif;
 }
 
 .btn-bd-primary {
