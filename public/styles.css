@@ -1,6 +1,8 @@
 /* google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Оставляем этот стиль для тела */
 body{
   margin: 20px 40px;
@@ -8,7 +10,26 @@ body{
   letter-spacing: 1px;
   background: #fafafa;
   height: 100%;
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Overpass', sans-serif;
 }
 
+.btn-bd-primary {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--bd-violet-bg);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #{shade-color($bd-violet, 10%)};
+  --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
+  --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+}
 /* Удаляем все остальные стили, так как мы будем использовать классы Bootstrap */
+
+.custom-btn {
+  --bs-btn-bg: #94e7ce; /* Coral color */
+  --bs-btn-color: #000000; /* White text */
+  --bs-btn-hover-bg: #81d6c9; /* Darker Coral color on hover */
+}

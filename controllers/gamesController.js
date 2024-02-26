@@ -13,7 +13,7 @@ module.exports.games_get = async (req, res) => {
     const queryParams = {
       key: API_KEY,
       page: page || 1,
-      page_size: page_size || 12,
+      page_size: page_size || 20,
       search,
       platforms,
     };

@@ -9,7 +9,7 @@
     <div class="input-group">
       <input type="text" class="form-control" name="search" placeholder="Search for games..." value="<%= searchQuery || '' %>">
       <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-warning" type="submit">Search</button>
       </div>
     </div>
   </form>
@@ -17,7 +17,7 @@
   <!-- Отображение результатов поиска -->
   <div class="row">
     <% games.forEach(game => { %>
-      <div class="col-md-4 mb-4">
+      <div class="col-md-3 mb-4">
         <div class="card">
           <img src="<%= game.background_image %>" class="card-img-top" alt="<%= game.name %>">
           <div class="card-body">
@@ -26,7 +26,7 @@
             <p class="card-text"><strong>Rating:</strong> <%= game.rating %></p>
             <p class="card-text"><strong>Genres:</strong> <%= game.genres.map(genre => genre.name).join(', ') %></p>
             <p class="card-text"><strong>Platforms:</strong> <%= game.platforms.map(platform => platform.platform.name).join(', ') %></p>
-            <a href="/games/details/<%= game.id %>" class="btn btn-primary">Details</a>
+            <a href="/games/details/<%= game.id %>" class="btn btn-warning">Details</a>
           </div>
         </div>
       </div>

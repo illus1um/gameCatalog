@@ -7,7 +7,7 @@
       <div class="card my-5">
         <img src="<%= game.background_image %>" class="card-img-top" alt="<%= game.name %>">
         <div class="card-body">
-          <h5 class="card-title"><%= game.name %></h5>
+          <h2 class="card-title"><%= game.name %></h2>
           <p class="card-text"><strong>Release Date:</strong> <%= game.released %></p>
           <p class="card-text"><strong>Rating:</strong> <%= game.rating %></p>
           <p class="card-text"><strong>Genres:</strong> <%= game.genres.map(genre => genre.name).join(', ') %></p>
