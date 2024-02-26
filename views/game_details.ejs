@@ -1,0 +1,23 @@
+<!-- views/game_details.ejs -->
+<%- include('partials/header'); -%>
+
+<main class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <img src="<%= game.background_image %>" class="card-img-top" alt="<%= game.name %>">
+        <div class="card-body">
+          <h5 class="card-title"><%= game.name %></h5>
+          <p class="card-text"><strong>Release Date:</strong> <%= game.released %></p>
+          <p class="card-text"><strong>Rating:</strong> <%= game.rating %></p>
+          <p class="card-text"><strong>Genres:</strong> <%= game.genres.map(genre => genre.name).join(', ') %></p>
+          <p class="card-text"><strong>Platforms:</strong> <%= game.platforms.map(platform => platform.platform.name).join(', ') %></p>
+          <p class="card-text"><strong>Description:</strong> <%= game.description_raw %></p>
+          <a href="<%= game.website %>" class="btn btn-primary">Visit Official Website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer'); -%>

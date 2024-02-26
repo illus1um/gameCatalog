@@ -13,7 +13,7 @@ module.exports.games_get = async (req, res) => {
     const queryParams = {
       key: API_KEY,
       page: page || 1,
-      page_size: page_size || 24,
+      page_size: page_size || 12,
       search,
       platforms,
     };
@@ -36,6 +36,27 @@ module.exports.games_get = async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching games:', error);
+    res.status(500).render('error');
+  }
+};
+
+module.exports.game_details_get = async (req, res) => {
+  try {
+    // Получаем идентификатор игры из параметров запроса
+    const gameId = req.params.id;
+
+    // Выполняем запрос к RAWG API для получения подробной информации об игре по ее идентификатору
+    const response = await axios.get(`${API_URL}/${gameId}`, {
+      params: { key: API_KEY }
+    });
+    
+    // Получаем данные об игре
+    const game = response.data;
+
+    // Отображаем страницу с подробной информацией об игре и передаем данные
+    res.render('game_details', { game });
+  } catch (error) {
+    console.error('Error fetching game details:', error);
     res.status(500).render('error');
   }
 };

@@ -13,7 +13,7 @@
       </div>
     </div>
   </form>
-
+  
   <!-- Отображение результатов поиска -->
   <div class="row">
     <% games.forEach(game => { %>
@@ -26,7 +26,7 @@
             <p class="card-text"><strong>Rating:</strong> <%= game.rating %></p>
             <p class="card-text"><strong>Genres:</strong> <%= game.genres.map(genre => genre.name).join(', ') %></p>
             <p class="card-text"><strong>Platforms:</strong> <%= game.platforms.map(platform => platform.platform.name).join(', ') %></p>
-            <a href="#" class="btn btn-primary">Details</a>
+            <a href="/games/details/<%= game.id %>" class="btn btn-primary">Details</a>
           </div>
         </div>
       </div>
